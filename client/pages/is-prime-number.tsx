@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button, Alert, Form } from 'react-bootstrap';
+import { Button, Alert, Form, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import Layout from "../components/Layout";
 
 import algorithms from "../src/algorithm";
@@ -38,7 +38,15 @@ export default function HelloWorld() {
               {
                 result.map((result) => (
                   <tr key={result.algorithm.name}>
-                    <td>{result.algorithm.name}</td>
+                    <td>
+                      <OverlayTrigger
+                        placement="left"
+                        delay={{ show: 100, hide: 500 }}
+                        overlay={<Tooltip>{result.algorithm.description}</Tooltip>}
+                      >
+                        <div className="AlgoName">{result.algorithm.name}</div>
+                      </OverlayTrigger>
+                    </td>
                     <td>{result.isPrime}</td>
                     <td className={`isPrime-${result.isPrime}`}>
                       {result.isPrime === -1 ? "---" : result.isPrime === 0 ? "素数ではない" : result.isPrime === 1 ? "多分素数" : "絶対に素数"}
