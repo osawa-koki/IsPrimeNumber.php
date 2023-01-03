@@ -1,15 +1,29 @@
 <?php
+
 require_once('../common/json.php');
 
 $requestData = get_json_from_stream();
 
-function fermat_primality_test($n, $a) {
-  return gmp_powmod($a, $n - 1, $n) == 1;
+function fermat_primality_test($n, $k) {
+  if ($n == 2 || $n == 3) {
+    return 2; // 絶対に素数
+  }
+  if ($n <= 1 || $n % 2 == 0) {
+    return 0; // 非素数
+  }
+
+  for ($i = 0; $i < $k; $i++) {
+    $a = rand(2, $n - 2);
+    if (gmp_powm($a, $n - 1, $n) != 1) {
+      return 0; // 非素数
+    }
+  }
+  return 1; // 多分素数
 }
 
 if (isset($requestData->number)) {
   $n = $requestData->number;
-  $result = fermat_primality_test($n);
+  $result = fermat_primality_test($n, 2);
   $response = [];
   $response['result'] = $result;
   $response['number'] = $n;
