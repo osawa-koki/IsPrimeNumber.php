@@ -33,7 +33,7 @@ export default function HelloWorld() {
       await new Promise((resolve) => setTimeout(resolve, 100));
       algorithms.forEach((algorithm) => {
         const n = number;
-        fetch(`http://localhost/api/${algorithm.api_name}.php`,
+        fetch(`/api/${algorithm.api_name}.php`,
         {
           method: "POST",
           headers: {
@@ -50,7 +50,7 @@ export default function HelloWorld() {
           setOnprogress(onprogress.filter((name) => name !== algorithm.name));
         });
       });
-      fetch(`http://localhost/api/gmp_prob_prime.php`, {
+      fetch(`/api/gmp_prob_prime.php`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
