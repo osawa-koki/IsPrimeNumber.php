@@ -1,0 +1,16 @@
+
+#IsPrimeNumber {
+  #IsPrimeHeader {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    $buttonWidth: 100;
+    #IsPrimeInput {
+      width: calc(100% - #{$buttonWidth}px);
+    }
+    button {
+      width: #{$buttonWidth}px;
+      margin-left: 0.5rem;
+    }
+  }
+}
