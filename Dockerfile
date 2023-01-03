@@ -18,6 +18,8 @@ COPY wwwroot/ /var/www/html/
 # Expose Apache on port 80
 EXPOSE 80
 
+RUN apt-get install -y php-gmp
+COPY php.ini /etc/php/7.4/cli/php.ini
 COPY apache2.conf /etc/apache2/apache2.conf
 RUN rm -f /var/www/html/index.html
 
