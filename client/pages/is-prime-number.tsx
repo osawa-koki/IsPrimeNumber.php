@@ -37,7 +37,7 @@ export default function HelloWorld() {
               <tbody>
               {
                 result.map((result) => (
-                  <tr>
+                  <tr key={result.algorithm.name}>
                     <td>{result.algorithm.name}</td>
                     <td>{result.isPrime}</td>
                     <td className={`isPrime-${result.isPrime}`}>
