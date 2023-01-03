@@ -7,7 +7,9 @@ $requestData = get_json_from_stream();
 if (isset($requestData->number)) {
   $n = $requestData->number;
   $result = gmp_prob_prime($n);
-  $response = array('result' => $result);
+  $response = [];
+  $response['result'] = $result;
+  $response['number'] = $n;
   echo json_encode($response);
 } else {
   http_response_code(400);
