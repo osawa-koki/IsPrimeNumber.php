@@ -1,12 +1,15 @@
 <?php
-
 require_once('../common/json.php');
 
 $requestData = get_json_from_stream();
 
+function fermat_primality_test($n, $a) {
+  return gmp_powmod($a, $n - 1, $n) == 1;
+}
+
 if (isset($requestData->number)) {
   $n = $requestData->number;
-  $result = gmp_prob_prime($n);
+  $result = fermat_primality_test($n);
   $response = [];
   $response['result'] = $result;
   $response['number'] = $n;
