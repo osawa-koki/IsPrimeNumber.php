@@ -24,15 +24,16 @@ FROM ubuntu:20.04
 RUN apt-get update && \
     apt-get install -y build-essential && \
     apt-get install -y libgmp-dev && \
-    apt-get install -y wget
-    
+    apt-get install -y wget && \
+    apt-get install -y pkg-config
+
 # Download PHP source code
 RUN wget https://www.php.net/distributions/php-7.4.12.tar.gz && \
     tar xvzf php-7.4.12.tar.gz
 
 # Build PHP with GMP(GNU Multiple Precision) library
 WORKDIR /php-7.4.12
-RUN ./configure --enable-gmp --with-gmp && \
+RUN ./configure PKG_CONFIG=/usr/local/bin/pkg-config --enable-gmp --with-gmp && \
     make && \
     make install
 
