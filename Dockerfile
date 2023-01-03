@@ -23,8 +23,9 @@ FROM ubuntu:20.04
 # Install build tools and GMP(GNU Multiple Precision) library
 RUN apt-get update && \
     apt-get install -y build-essential && \
-    apt-get install -y libgmp-dev
-
+    apt-get install -y libgmp-dev && \
+    apt-get install -y wget
+    
 # Download PHP source code
 RUN wget https://www.php.net/distributions/php-7.4.12.tar.gz && \
     tar xvzf php-7.4.12.tar.gz
