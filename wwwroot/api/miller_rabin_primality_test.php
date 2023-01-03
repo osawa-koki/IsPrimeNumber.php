@@ -1,5 +1,11 @@
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+  // CORSのプリフライトリクエストの場合、HTTPステータスを200に設定して終了する
+  http_response_code(200);
+  exit();
+}
+
 require_once('../common/json.php');
 
 $requestData = get_json_from_stream();

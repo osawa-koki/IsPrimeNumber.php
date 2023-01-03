@@ -10,7 +10,7 @@ require_once('../common/json.php');
 
 $requestData = get_json_from_stream();
 
-function fermat_primality_test($n, $k) {
+function solovey_shtrassen_test($n, $k) {
   if ($n == 2 || $n == 3) {
     return 2; // 絶対に素数
   }
@@ -20,10 +20,23 @@ function fermat_primality_test($n, $k) {
 
   for ($i = 0; $i < $k; $i++) {
     $a = rand(2, $n - 2);
-    if (gmp_powm($a, $n - 1, $n) != 1) {
-      return 0; // 非素数
+    $x = gmp_powm($a, $n - 1, $n);
+    if ($x != 1 && $x != $n - 1) {
+      $j = 1;
+      while ($j <= $n - 2 && $x != $n - 1) {
+        $x = gmp_mul($x, $x);
+        $x = gmp_mod($x, $n);
+        if ($x == 1) {
+          return 0; // 非素数
+        }
+        $j++;
+      }
+      if ($x != $n - 1) {
+        return 0; // 非素数
+      }
     }
   }
+
   return 1; // 多分素数
 }
 
@@ -34,7 +47,7 @@ if (isset($requestData->number)) {
   if (!isset($k) || $k > 100) {
     $k = 10;
   }
-  $result = fermat_primality_test($n, $k);
+  $result = solovey_shtrassen_test($n, $k);
   $response = [];
   $response['result'] = $result;
   $response['number'] = $n;
