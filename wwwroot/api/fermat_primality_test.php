@@ -23,10 +23,16 @@ function fermat_primality_test($n, $k) {
 
 if (isset($requestData->number)) {
   $n = $requestData->number;
-  $result = fermat_primality_test($n, 2);
+  $k = $requestData->k;
+  // kはテスト回数、最大値は100で、デフォルトは10
+  if (!isset($k) || $k > 100) {
+    $k = 10;
+  }
+  $result = fermat_primality_test($n, $k);
   $response = [];
   $response['result'] = $result;
   $response['number'] = $n;
+  $response['k'] = $k;
   echo json_encode($response);
 } else {
   http_response_code(400);
