@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Button, Alert, Form, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Button, Alert, Form, Tooltip, OverlayTrigger, Spinner } from 'react-bootstrap';
 import Layout from "../components/Layout";
 
 import algorithms from "../src/algorithm";
@@ -13,7 +13,7 @@ type Result = {
 
 export default function HelloWorld() {
 
-  const [judging, setJudging] = useState(false);
+  const [onprogress, setOnprogress] = useState<number>(0);
   const [result, setResult] = useState<Result[]>(
     algorithms.map((algorithm) => ({
       algorithm,
@@ -30,7 +30,12 @@ export default function HelloWorld() {
               <Form.Label>Enter Number... 🐬🐬🐬</Form.Label>
               <Form.Control type="number" size="lg" min="0" />
             </Form.Group>
-            <Button>判定 🦑</Button>
+            <Button disabled={onprogress !== 0}>
+              {onprogress === 0 ? <>判定 🦑</> : <><Spinner animation="border" variant="light" size="sm" /></>}
+            </Button>
+          </div>
+          <div>
+
           </div>
           <div id="IsPrimeResult">
             <table>
