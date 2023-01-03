@@ -44,7 +44,7 @@ COPY apache2.conf /etc/apache2/apache2.conf
 RUN rm -f /var/www/html/index.html
 
 # Copy the Next.js app
-COPY --from=build-stage /app/out /var/www/html
+COPY --from=build-stage /app/dist /var/www/html
 
 # Start Apache when the container is launched
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
