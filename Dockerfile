@@ -10,7 +10,8 @@ RUN apt-get install -y apache2 && \
     apt-get install -y php libapache2-mod-php
 
 # Enable Apache mod_rewrite
-RUN a2enmod rewrite
+RUN a2enmod rewrite && \
+    a2enmod headers
 
 # Copy PHP code to Apache web root
 COPY wwwroot/ /var/www/html/

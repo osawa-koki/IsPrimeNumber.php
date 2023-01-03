@@ -13,8 +13,11 @@
       margin-left: 0.5rem;
     }
   }
+  #IsPrimeSummary {
+    margin-top: 1rem;
+  }
   #IsPrimeResult {
-    margin-top: 3rem;
+    margin-top: 1rem;
     table {
       margin: 0 auto;
       border-collapse: collapse;
@@ -36,5 +39,8 @@
         }
       }
     }
+  }
+  #Error {
+    margin-top: 1rem;
   }
 }
