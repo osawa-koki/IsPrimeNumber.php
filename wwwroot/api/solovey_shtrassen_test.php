@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 require_once('../common/json.php');
+
 $requestData = get_json_from_stream();
 
 function solovey_shtrassen_test($n, $k) {
