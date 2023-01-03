@@ -27,7 +27,8 @@ RUN apt-get update
 
 # Install Apache and PHP
 RUN apt-get install -y apache2 && \
-    apt-get install -y php libapache2-mod-php
+    apt-get install -y php libapache2-mod-php && \
+    apt-get install -y php-gmp
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -38,7 +39,6 @@ COPY wwwroot/ /var/www/html/
 # Expose Apache on port 80
 EXPOSE 80
 
-RUN apt-get install -y php-gmp
 COPY php.ini /etc/php/7.4/cli/php.ini
 COPY apache2.conf /etc/apache2/apache2.conf
 RUN rm -f /var/www/html/index.html
