@@ -1,8 +1,12 @@
 FROM ubuntu:20.04
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+# Update package manager database
+RUN apt-get update
+
 # Install Apache and PHP
-RUN apt-get update && \
-    apt-get install -y apache2 && \
+RUN apt-get install -y apache2 && \
     apt-get install -y php libapache2-mod-php
 
 # Enable Apache mod_rewrite
@@ -13,6 +17,9 @@ COPY wwwroot/ /var/www/html/
 
 # Expose Apache on port 80
 EXPOSE 80
+
+COPY apache2.conf /etc/apache2/apache2.conf
+RUN rm -f /var/www/html/index.html
 
 # Start Apache when the container is launched
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
