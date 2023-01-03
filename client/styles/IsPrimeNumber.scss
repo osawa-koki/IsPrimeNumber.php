@@ -13,4 +13,24 @@
       margin-left: 0.5rem;
     }
   }
+  #IsPrimeResult {
+    margin-top: 3rem;
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      th, td {
+        border: 1px solid lightgray;
+        padding: 1rem 2rem;
+        &.isPrime-0 {
+          background-color: rgb(245, 245, 245);
+        }
+        &.isPrime-1 {
+          background-color: rgb(215, 255, 215);
+        }
+        &.isPrime-2 {
+          background-color: rgb(195, 240, 255);
+        }
+      }
+    }
+  }
 }
