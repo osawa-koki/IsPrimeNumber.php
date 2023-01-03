@@ -13,7 +13,9 @@ type Result = {
 
 export default function HelloWorld() {
 
+  const [summary, setSummary] = useState(-1);
   const [onprogress, setOnprogress] = useState<number>(0);
+  const [number, setNumber] = useState(Math.floor(Math.random() * 100000000));
   const [result, setResult] = useState<Result[]>(
     algorithms.map((algorithm) => ({
       algorithm,
@@ -28,15 +30,19 @@ export default function HelloWorld() {
           <div id="IsPrimeHeader">
             <Form.Group id="IsPrimeInput">
               <Form.Label>Enter Number... 🐬🐬🐬</Form.Label>
-              <Form.Control type="number" size="lg" min="0" />
+              <Form.Control type="number" size="lg" min="0" value={number} onInput={(e) => {setNumber(parseInt((e.target as HTMLInputElement).value))}} />
             </Form.Group>
             <Button disabled={onprogress !== 0}>
               {onprogress === 0 ? <>判定 🦑</> : <><Spinner animation="border" variant="light" size="sm" /></>}
             </Button>
           </div>
-          <div>
-
-          </div>
+          {
+            summary !== -1 &&
+            <>
+              <div id="IsPrimeSummary">
+              </div>
+            </>
+          }
           <div id="IsPrimeResult">
             <table>
               <tbody>
