@@ -43,9 +43,8 @@ function solovey_shtrassen_test($n, $k) {
 if (isset($requestData->number)) {
   $n = $requestData->number;
   $k = $requestData->k;
-  // kはテスト回数、最大値は100で、デフォルトは10
   if (!isset($k) || $k > 100) {
-    $k = 10;
+    $k = 50;
   }
   $result = solovey_shtrassen_test($n, $k);
   $response = [];

@@ -10,7 +10,7 @@ require_once('../common/json.php');
 
 $requestData = get_json_from_stream();
 
-function miller_rabin_primality_test($n) {
+function miller_rabin_primality_test($n, $k) {
   if ($n <= 1) return 0;
   if ($n == 2) return 2;
   if ($n % 2 == 0) return 0;
@@ -20,7 +20,7 @@ function miller_rabin_primality_test($n) {
     $d /= 2;
     $s += 1;
   }
-  for ($i = 0; $i < 20; $i++) {
+  for ($i = 0; $i < $k; $i++) {
     $a = rand(2, $n - 1);
     $x = pow($a, $d) % $n;
     if ($x == 1 || $x == $n - 1) continue;
@@ -35,10 +35,13 @@ function miller_rabin_primality_test($n) {
 
 if (isset($requestData->number)) {
   $n = $requestData->number;
-  $result = miller_rabin_primality_test($n);
+  $k = $requestData->k;
+  if (!isset($k) || $k > 100) $k = 50;
+  $result = miller_rabin_primality_test($n, $k);
   $response = [];
   $response['result'] = $result;
   $response['number'] = $n;
+  $response['k'] = $k;
   echo json_encode($response);
 } else {
   http_response_code(400);
