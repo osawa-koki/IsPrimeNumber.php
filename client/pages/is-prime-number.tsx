@@ -107,13 +107,14 @@ export default function HelloWorld() {
                       </OverlayTrigger>
                     </td>
                     <td className={`isPrime-${result.isPrime}`}>
-                      {result.isPrime === -1 ? "---" : result.isPrime === 0 ? "素数ではない" : result.isPrime === 1 ? "多分素数" : "絶対に素数"}
+                      {result.isPrime === -1 ? "---" : result.isPrime === 0 ? "素数ではない???" : result.isPrime === 1 ? "多分素数???" : "素数"}
                     </td>
                   </tr>
                 ))
               }
               </tbody>
             </table>
+            <p>これらは確率的素数判定法であるため、誤判定が生じることもあります。</p>
           </div>
           {
             error &&
