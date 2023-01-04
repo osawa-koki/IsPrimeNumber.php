@@ -107,7 +107,7 @@ export default function HelloWorld() {
                       </OverlayTrigger>
                     </td>
                     <td className={`isPrime-${result.isPrime}`}>
-                      {result.isPrime === -1 ? "---" : result.isPrime === 0 ? "素数ではない" : result.isPrime === 1 ? "多分素数" : "素数"}???
+                      {result.isPrime === -1 ? "---" : result.isPrime === 0 ? "素数ではない???" : result.isPrime === 1 ? "多分素数???" : "素数"}
                     </td>
                   </tr>
                 ))
